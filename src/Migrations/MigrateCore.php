@@ -172,7 +172,7 @@ class MigrateCore
         MigrateTaxes::down();
         MigrateCustomerAddresses::down();
         MigrateSupplyOrderDetails::down();
-        MigrateSupplyOrders::up();
+        MigrateSupplyOrders::down();
         MigrateCurrencyProperties::down();
         MigrateCurrencies::down();
         MigrateEmployeeRoles::down();
