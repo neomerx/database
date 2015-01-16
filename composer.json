@@ -1,0 +1,15 @@
+{
+    "name": "neomerx/database",
+    "description": "Neomerx Framework database migrations and seeds for core components",
+    "require": {
+        "php":               ">=5.5.0",
+        "laravel/framework": "~5.0",
+        "neomerx/core":      "dev-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Neomerx\\Database\\": "./src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
