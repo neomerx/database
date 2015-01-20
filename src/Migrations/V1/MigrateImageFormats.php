@@ -31,7 +31,7 @@ class MigrateImageFormats extends BaseMigrate
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH)->unique();
+            $table->string(Model::FIELD_CODE, Model::NAME_MAX_LENGTH)->unique();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->smallInteger(Model::FIELD_WIDTH)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
