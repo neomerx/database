@@ -45,11 +45,14 @@ class MigrateImagePath extends BaseMigrate
             }
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_IMAGE)->references(Image::FIELD_ID)->on(Image::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_IMAGE)
+                ->references(Image::FIELD_ID)->on(Image::TABLE_NAME)
+                ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_IMAGE_FORMAT)
-                ->references(ImageFormat::FIELD_ID)->on(ImageFormat::TABLE_NAME);
+                ->references(ImageFormat::FIELD_ID)->on(ImageFormat::TABLE_NAME)
+                ->onDelete('cascade');
         });
     }
 
