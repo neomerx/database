@@ -17,7 +17,7 @@ class MigrateAddresses extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -40,10 +40,10 @@ class MigrateAddresses extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_ADDRESS2, Model::ADDRESS_2_MAX_LENGTH)->nullable();
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

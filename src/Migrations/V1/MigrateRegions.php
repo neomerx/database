@@ -17,7 +17,7 @@ class MigrateRegions extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -38,10 +38,10 @@ class MigrateRegions extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->smallInteger(Model::FIELD_POSITION)->unsigned();
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

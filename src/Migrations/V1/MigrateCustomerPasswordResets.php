@@ -16,7 +16,7 @@ class MigrateCustomerPasswordResets extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -35,10 +35,10 @@ class MigrateCustomerPasswordResets extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_TOKEN)->index();
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
         });

@@ -17,7 +17,7 @@ class MigrateOrderStatusRules extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -34,10 +34,10 @@ class MigrateOrderStatusRules extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_ORDER_STATUS_FROM);
             $table->unsignedInteger(Model::FIELD_ID_ORDER_STATUS_TO);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

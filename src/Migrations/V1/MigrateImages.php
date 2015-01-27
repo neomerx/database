@@ -16,7 +16,7 @@ class MigrateImages extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -33,10 +33,10 @@ class MigrateImages extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_ORIGINAL_FILE, Model::ORIGINAL_FILE_NAME_MAX_LENGTH)->unique();
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
         });

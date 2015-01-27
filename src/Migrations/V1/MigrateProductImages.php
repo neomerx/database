@@ -19,7 +19,7 @@ class MigrateProductImages extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -42,10 +42,10 @@ class MigrateProductImages extends BaseMigrate
             $table->tinyInteger(Model::FIELD_POSITION)->unsigned();
             $table->boolean(Model::FIELD_IS_COVER);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

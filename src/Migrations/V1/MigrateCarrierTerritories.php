@@ -18,7 +18,7 @@ class MigrateCarrierTerritories extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -43,10 +43,10 @@ class MigrateCarrierTerritories extends BaseMigrate
             ]);
             $table->index([Model::FIELD_TERRITORY_ID, Model::FIELD_TERRITORY_TYPE]);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

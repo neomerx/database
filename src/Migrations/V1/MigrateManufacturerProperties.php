@@ -18,7 +18,7 @@ class MigrateManufacturerProperties extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -37,10 +37,10 @@ class MigrateManufacturerProperties extends BaseMigrate
             $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
             $table->string(Model::FIELD_DESCRIPTION, Model::DESCRIPTION_MAX_LENGTH);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

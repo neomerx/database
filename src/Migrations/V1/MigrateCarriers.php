@@ -24,7 +24,7 @@ class MigrateCarriers extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -61,10 +61,10 @@ class MigrateCarriers extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->double(Model::FIELD_MAX_DIMENSION)->unsigned()->nullable();
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
         });

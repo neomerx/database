@@ -19,7 +19,7 @@ class MigrateShippingOrders extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -38,10 +38,10 @@ class MigrateShippingOrders extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_SHIPPING_ORDER_STATUS);
             $table->string(Model::FIELD_TRACKING_NUMBER, Model::TRACKING_NUMBER_MAX);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

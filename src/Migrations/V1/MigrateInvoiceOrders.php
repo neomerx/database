@@ -18,7 +18,7 @@ class MigrateInvoiceOrders extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -41,10 +41,10 @@ class MigrateInvoiceOrders extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_ORDER)->unique();
             $table->unique([Model::FIELD_ID_INVOICE, Model::FIELD_ID_ORDER]);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

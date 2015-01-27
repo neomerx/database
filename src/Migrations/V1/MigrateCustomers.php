@@ -19,7 +19,7 @@ class MigrateCustomers extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -46,10 +46,10 @@ class MigrateCustomers extends BaseMigrate
             $table->string(Model::FIELD_MOBILE, Model::MOBILE_MAX_LENGTH)->unique();
             $table->enum(Model::FIELD_GENDER, [Model::GENDER_MALE, Model::GENDER_FEMALE]);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

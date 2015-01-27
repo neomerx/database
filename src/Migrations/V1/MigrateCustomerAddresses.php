@@ -18,7 +18,7 @@ class MigrateCustomerAddresses extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -41,10 +41,10 @@ class MigrateCustomerAddresses extends BaseMigrate
             $table->unique([Model::FIELD_ID_CUSTOMER, Model::FIELD_ID_ADDRESS, Model::FIELD_TYPE]);
             $table->unique([Model::FIELD_ID_CUSTOMER, Model::FIELD_TYPE, Model::FIELD_IS_DEFAULT]);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

@@ -17,7 +17,7 @@ class MigrateCategories extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -51,10 +51,10 @@ class MigrateCategories extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign('id_ancestor')->references(Model::FIELD_ID)->on(Model::TABLE_NAME);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
         });

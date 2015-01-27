@@ -18,7 +18,7 @@ class MigrateEmployeeRoles extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -37,10 +37,10 @@ class MigrateEmployeeRoles extends BaseMigrate
 
             $table->unique([Model::FIELD_ID_EMPLOYEE, Model::FIELD_ID_ROLE]);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 

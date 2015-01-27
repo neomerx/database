@@ -16,7 +16,7 @@ class MigrateOrderStatuses extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -34,10 +34,10 @@ class MigrateOrderStatuses extends BaseMigrate
             $table->string(Model::FIELD_CODE, Model::CODE_MAX_LENGTH)->unique();
             $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
         });

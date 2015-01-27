@@ -20,7 +20,7 @@ class MigrateSupplyOrders extends BaseMigrate
      */
     protected static function getModel()
     {
-        return self::$model = self::$model ?: new Model();
+        return self::$model = (self::$model !== null ? self::$model : new Model());
     }
 
     /**
@@ -44,10 +44,10 @@ class MigrateSupplyOrders extends BaseMigrate
             $table->enum(Model::FIELD_STATUS, [Model::STATUS_DRAFT, Model::STATUS_VALIDATED, Model::STATUS_CANCELLED])
                 ->default(Model::STATUS_DRAFT);
 
-            if (self::usesTimestamps()) {
+            if (self::usesTimestamps() === true) {
                 $table->timestamps();
             }
-            if (self::isSoftDeleting()) {
+            if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
 
