@@ -11,7 +11,7 @@ use \Illuminate\Database\Migrations\Migration;
 abstract class BaseMigrate extends Migration
 {
     /**
-     * @return \Neomerx\Core\Models\BaseModel
+     * @return \Neomerx\Core\Models\BaseModel|null
      */
     protected static function getModel()
     {

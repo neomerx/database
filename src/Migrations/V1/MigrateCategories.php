@@ -1,6 +1,5 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
-use \DB;
 use \Schema;
 use \Neomerx\Core\Models\Category as Model;
 use \Illuminate\Database\Schema\Blueprint;
@@ -30,8 +29,7 @@ class MigrateCategories extends BaseMigrate
     public static function up()
     {
         $tableName = Model::TABLE_NAME;
-        $isSqlite = 'sqlite' === DB::connection()->getDriverName();
-        Schema::create($tableName, function (Blueprint $table) use ($isSqlite) {
+        Schema::create($tableName, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
             $table->unsignedInteger(Model::FIELD_ID_ANCESTOR);
             /** @noinspection PhpUndefinedMethodInspection */
@@ -39,14 +37,6 @@ class MigrateCategories extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_LINK, Model::LINK_MAX_LENGTH)->unique();
             $table->boolean(Model::FIELD_ENABLED);
-
-            // For sqlite we'll add them manually
-            if (!$isSqlite) {
-                /** @noinspection PhpUndefinedMethodInspection */
-                $table->unsignedInteger(Model::FIELD_LFT)->unique();
-                /** @noinspection PhpUndefinedMethodInspection */
-                $table->unsignedInteger(Model::FIELD_RGT)->unique();
-            }
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign('id_ancestor')->references(Model::FIELD_ID)->on(Model::TABLE_NAME);
@@ -58,11 +48,6 @@ class MigrateCategories extends BaseMigrate
                 $table->softDeletes();
             }
         });
-
-        if ($isSqlite) {
-            DB::update(DB::raw("ALTER TABLE $tableName ADD COLUMN lft UNSIGNED INTEGER DEFERRABLE INITIALLY DEFERRED"));
-            DB::update(DB::raw("ALTER TABLE $tableName ADD COLUMN rgt UNSIGNED INTEGER DEFERRABLE INITIALLY DEFERRED"));
-        }
     }
 
     /**
