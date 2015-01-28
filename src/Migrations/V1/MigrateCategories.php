@@ -37,9 +37,13 @@ class MigrateCategories extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_LINK, Model::LINK_MAX_LENGTH)->unique();
             $table->boolean(Model::FIELD_ENABLED);
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->unsignedInteger(Model::FIELD_LFT)->unique();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->unsignedInteger(Model::FIELD_RGT)->unique();
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign('id_ancestor')->references(Model::FIELD_ID)->on(Model::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_ANCESTOR)->references(Model::FIELD_ID)->on(Model::TABLE_NAME);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
