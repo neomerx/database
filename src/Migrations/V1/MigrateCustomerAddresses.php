@@ -35,11 +35,9 @@ class MigrateCustomerAddresses extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_CUSTOMER);
             $table->unsignedInteger(Model::FIELD_ID_ADDRESS);
             $table->enum(Model::FIELD_TYPE, [Model::TYPE_BILLING, Model::TYPE_SHIPPING]);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->enum(Model::FIELD_IS_DEFAULT, [Model::IS_DEFAULT])->nullable();
+            $table->boolean(Model::FIELD_IS_DEFAULT);
 
             $table->unique([Model::FIELD_ID_CUSTOMER, Model::FIELD_ID_ADDRESS, Model::FIELD_TYPE]);
-            $table->unique([Model::FIELD_ID_CUSTOMER, Model::FIELD_TYPE, Model::FIELD_IS_DEFAULT]);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
