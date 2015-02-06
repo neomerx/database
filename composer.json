@@ -11,5 +11,5 @@
             "Neomerx\\Database\\": "./src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
