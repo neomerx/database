@@ -46,7 +46,7 @@ class MigrateCarriers extends BaseMigrate
             $table->text(Model::FIELD_DATA)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->text(Model::FIELD_CACHE)->nullable();
-            $table->text(Model::FIELD_FACTORY);
+            $table->string(Model::FIELD_CALCULATOR_CODE, Model::CODE_MAX_LENGTH);
             $table->boolean(Model::FIELD_IS_TAXABLE);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->double(Model::FIELD_MIN_WEIGHT)->unsigned()->nullable();
