@@ -1,10 +1,10 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
-use \Neomerx\Core\Models\Product;
+use \Neomerx\Core\Models\Variant;
 use \Neomerx\Core\Models\Warehouse;
-use \Neomerx\Core\Models\Inventory as Model;
 use \Illuminate\Database\Schema\Blueprint;
+use \Neomerx\Core\Models\Inventory as Model;
 
 class MigrateInventory extends BaseMigrate
 {
@@ -34,7 +34,7 @@ class MigrateInventory extends BaseMigrate
 
             $table->increments(Model::FIELD_ID);
             $table->unsignedInteger(Model::FIELD_ID_WAREHOUSE);
-            $table->string(Model::FIELD_SKU, Product::SKU_MAX_LENGTH);
+            $table->unsignedInteger(Model::FIELD_ID_VARIANT);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedBigInteger(Model::FIELD_IN)->default(0);
             /** @noinspection PhpUndefinedMethodInspection */
@@ -49,7 +49,10 @@ class MigrateInventory extends BaseMigrate
                 $table->softDeletes();
             }
 
-            $table->unique([Model::FIELD_SKU, Model::FIELD_ID_WAREHOUSE]);
+            $table->unique([Model::FIELD_ID_VARIANT, Model::FIELD_ID_WAREHOUSE]);
+
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)->on(Variant::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_WAREHOUSE)->references(Warehouse::FIELD_ID)->on(Warehouse::TABLE_NAME);
