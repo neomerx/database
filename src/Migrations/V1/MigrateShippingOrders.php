@@ -1,10 +1,9 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
-use \Neomerx\Core\Models\Order;
 use \Neomerx\Core\Models\Carrier;
-use \Neomerx\Core\Models\ShippingOrderStatus;
 use \Illuminate\Database\Schema\Blueprint;
+use \Neomerx\Core\Models\ShippingOrderStatus;
 use \Neomerx\Core\Models\ShippingOrder as Model;
 
 class MigrateShippingOrders extends BaseMigrate
@@ -33,7 +32,6 @@ class MigrateShippingOrders extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_ORDER);
             $table->unsignedInteger(Model::FIELD_ID_CARRIER);
             $table->unsignedInteger(Model::FIELD_ID_SHIPPING_ORDER_STATUS);
             $table->string(Model::FIELD_TRACKING_NUMBER, Model::TRACKING_NUMBER_MAX);
@@ -44,9 +42,6 @@ class MigrateShippingOrders extends BaseMigrate
             if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
-
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_ORDER)->references(Order::FIELD_ID)->on(Order::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_CARRIER)->references(Carrier::FIELD_ID)->on(Carrier::TABLE_NAME);
