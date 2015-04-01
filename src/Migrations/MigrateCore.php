@@ -5,6 +5,7 @@ use \Neomerx\Database\Migrations\V1\MigrateTaxes;
 use \Neomerx\Database\Migrations\V1\MigrateOrders;
 use \Neomerx\Database\Migrations\V1\MigrateImages;
 use \Neomerx\Database\Migrations\V1\MigrateStores;
+use \Neomerx\Database\Migrations\V1\MigrateActions;
 use \Neomerx\Database\Migrations\V1\MigrateRegions;
 use \Neomerx\Database\Migrations\V1\MigrateCarriers;
 use \Neomerx\Database\Migrations\V1\MigrateInvoices;
@@ -25,6 +26,7 @@ use \Neomerx\Database\Migrations\V1\MigrateWarehouses;
 use \Neomerx\Database\Migrations\V1\MigrateImageFormats;
 use \Neomerx\Database\Migrations\V1\MigrateMeasurements;
 use \Neomerx\Database\Migrations\V1\MigrateOrderDetails;
+use \Neomerx\Database\Migrations\V1\MigrateRolesActions;
 use \Neomerx\Database\Migrations\V1\MigrateSupplyOrders;
 use \Neomerx\Database\Migrations\V1\MigrateCustomerRisks;
 use \Neomerx\Database\Migrations\V1\MigrateCustomerTypes;
@@ -149,6 +151,8 @@ class MigrateCore
         MigrateTaxRuleProductTypes::up();
         MigrateCustomerPasswordResets::up();
         MigrateEmployeePasswordResets::up();
+        MigrateActions::up();
+        MigrateRolesActions::up();
 
         // <-- add new migrations here
     }
@@ -162,6 +166,8 @@ class MigrateCore
     {
         // <-- add new migrations here
 
+        MigrateRolesActions::down();
+        MigrateActions::down();
         MigrateEmployeePasswordResets::down();
         MigrateCustomerPasswordResets::down();
         MigrateTaxRuleProductTypes::down();
