@@ -32,6 +32,8 @@ class MigrateActions extends BaseMigrate
             $table->increments(Model::FIELD_ID);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_CODE, Model::CODE_MAX_LENGTH)->unique();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->string(Model::FIELD_DESCRIPTION, Model::DESCRIPTION_MAX_LENGTH)->nullable();
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
