@@ -1,6 +1,7 @@
 <?php namespace Neomerx\Database\Seeds;
 
 use \Illuminate\Database\Seeder;
+use \Neomerx\Database\Seeds\V1\RoleTableSeeder;
 use \Neomerx\Database\Seeds\V1\StoresTableSeeder;
 use \Neomerx\Database\Seeds\V1\RegionsTableSeeder;
 use \Neomerx\Database\Seeds\V1\EmployeeTableSeeder;
@@ -22,6 +23,7 @@ class CoreSeeder extends Seeder
     public function run()
     {
         $this->call(LanguagesTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
         $this->call(EmployeeTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(OrderStatusesTableSeeder::class);
