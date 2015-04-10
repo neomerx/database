@@ -5,7 +5,6 @@ use \Neomerx\Database\Migrations\V1\MigrateTaxes;
 use \Neomerx\Database\Migrations\V1\MigrateOrders;
 use \Neomerx\Database\Migrations\V1\MigrateImages;
 use \Neomerx\Database\Migrations\V1\MigrateStores;
-use \Neomerx\Database\Migrations\V1\MigrateActions;
 use \Neomerx\Database\Migrations\V1\MigrateRegions;
 use \Neomerx\Database\Migrations\V1\MigrateCarriers;
 use \Neomerx\Database\Migrations\V1\MigrateInvoices;
@@ -23,10 +22,10 @@ use \Neomerx\Database\Migrations\V1\MigrateSuppliers;
 use \Neomerx\Database\Migrations\V1\MigrateCategories;
 use \Neomerx\Database\Migrations\V1\MigrateCurrencies;
 use \Neomerx\Database\Migrations\V1\MigrateWarehouses;
+use \Neomerx\Database\Migrations\V1\MigrateObjectTypes;
 use \Neomerx\Database\Migrations\V1\MigrateImageFormats;
 use \Neomerx\Database\Migrations\V1\MigrateMeasurements;
 use \Neomerx\Database\Migrations\V1\MigrateOrderDetails;
-use \Neomerx\Database\Migrations\V1\MigrateRolesActions;
 use \Neomerx\Database\Migrations\V1\MigrateSupplyOrders;
 use \Neomerx\Database\Migrations\V1\MigrateCustomerRisks;
 use \Neomerx\Database\Migrations\V1\MigrateCustomerTypes;
@@ -45,6 +44,7 @@ use \Neomerx\Database\Migrations\V1\MigrateInvoicePayments;
 use \Neomerx\Database\Migrations\V1\MigrateProductTaxTypes;
 use \Neomerx\Database\Migrations\V1\MigrateCarrierPostcodes;
 use \Neomerx\Database\Migrations\V1\MigrateOrderStatusRules;
+use \Neomerx\Database\Migrations\V1\MigrateRolesObjectTypes;
 use \Neomerx\Database\Migrations\V1\MigrateTaxRulePostcodes;
 use \Neomerx\Database\Migrations\V1\MigrateCarrierProperties;
 use \Neomerx\Database\Migrations\V1\MigrateCountryProperties;
@@ -151,8 +151,8 @@ class MigrateCore
         MigrateTaxRuleProductTypes::up();
         MigrateCustomerPasswordResets::up();
         MigrateEmployeePasswordResets::up();
-        MigrateActions::up();
-        MigrateRolesActions::up();
+        MigrateObjectTypes::up();
+        MigrateRolesObjectTypes::up();
 
         // <-- add new migrations here
     }
@@ -166,8 +166,8 @@ class MigrateCore
     {
         // <-- add new migrations here
 
-        MigrateRolesActions::down();
-        MigrateActions::down();
+        MigrateRolesObjectTypes::down();
+        MigrateObjectTypes::down();
         MigrateEmployeePasswordResets::down();
         MigrateCustomerPasswordResets::down();
         MigrateTaxRuleProductTypes::down();

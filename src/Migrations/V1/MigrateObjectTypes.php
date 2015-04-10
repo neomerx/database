@@ -1,12 +1,10 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
-use \Neomerx\Core\Models\Role;
-use \Neomerx\Core\Models\Action;
+use \Neomerx\Core\Models\ObjectType as Model;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\RoleAction as Model;
 
-class MigrateRolesActions extends BaseMigrate
+class MigrateObjectTypes extends BaseMigrate
 {
     /**
      * @var Model
@@ -32,10 +30,8 @@ class MigrateRolesActions extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_ACTION);
-            $table->unsignedInteger(Model::FIELD_ID_ROLE);
-
-            $table->unique([Model::FIELD_ID_ACTION, Model::FIELD_ID_ROLE]);
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->string(Model::FIELD_TYPE, Model::TYPE_MAX_LENGTH)->unique();
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -43,14 +39,6 @@ class MigrateRolesActions extends BaseMigrate
             if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
-
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_ACTION)->references(Action::FIELD_ID)->on(Action::TABLE_NAME)
-                ->onDelete('cascade');
-
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_ROLE)->references(Role::FIELD_ID)->on(Role::TABLE_NAME)
-                ->onDelete('cascade');
         });
     }
 
