@@ -56,7 +56,7 @@ class RoleTableSeeder extends Seeder
     }
 
     /**
-     * @return array
+     * @return array[]
      */
     private function getAdminPermissions()
     {

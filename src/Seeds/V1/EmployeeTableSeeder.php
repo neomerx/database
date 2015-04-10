@@ -24,12 +24,12 @@ class EmployeeTableSeeder extends Seeder
             Employee::FIELD_ACTIVE     => true,
         ]);
 
-        /** @var Role $adminRole */
-        $adminRole = Role::where(Role::FIELD_CODE, 'ADMIN')->firstOrFail();
+        /** @var Role $role */
+        $role = Role::where(Role::FIELD_CODE, 'ADMIN')->firstOrFail();
 
         /** @var EmployeeRoleRepositoryInterface $employeeRoleRepo */
         $employeeRoleRepo = app(EmployeeRoleRepositoryInterface::class);
-        $employeeRoleRepo->instance($employee, $adminRole)->saveOrFail();
+        $employeeRoleRepo->instance($employee, $role)->saveOrFail();
 
         // reserve first 100 IDs, set autoincrement start from 101
         $tableName = Employee::TABLE_NAME;
