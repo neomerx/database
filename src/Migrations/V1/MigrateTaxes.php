@@ -53,8 +53,8 @@ class MigrateTaxes extends BaseMigrate
             }
         });
 
-        $typeRegion     = S\nameToDbEnum(Region::BIND_NAME);
-        $typeCountry    = S\nameToDbEnum(Country::BIND_NAME);
+        $typeRegion     = S\nameToDbEnum(Region::class);
+        $typeCountry    = S\nameToDbEnum(Country::class);
         $taxesTable     = Tax::TABLE_NAME;
         $taxIdTax       = Tax::FIELD_ID;
         $rTable         = TaxRule::TABLE_NAME;

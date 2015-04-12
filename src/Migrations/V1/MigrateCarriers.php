@@ -92,8 +92,8 @@ class MigrateCarriers extends BaseMigrate
      */
     private static function getCreateSpStatement()
     {
-        $typeRegion     = S\nameToDbEnum(Region::BIND_NAME);
-        $typeCountry    = S\nameToDbEnum(Country::BIND_NAME);
+        $typeRegion     = S\nameToDbEnum(Region::class);
+        $typeCountry    = S\nameToDbEnum(Country::class);
         $crTable        = Carrier::TABLE_NAME;
         $crIdCarrier    = Carrier::FIELD_ID;
         $crMinWeight    = Carrier::FIELD_MIN_WEIGHT;
