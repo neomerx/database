@@ -2,6 +2,7 @@
 
 use \DB;
 use \Illuminate\Database\Seeder;
+use \Neomerx\Core\Support\Translate as T;
 use \Neomerx\Core\Models\Warehouse as Model;
 
 class WarehouseTableSeeder extends Seeder
@@ -17,7 +18,7 @@ class WarehouseTableSeeder extends Seeder
         $tableName = Model::TABLE_NAME;
         DB::table($tableName)->insert([
             Model::FIELD_CODE => Model::DEFAULT_CODE,
-            Model::FIELD_NAME => trans('nm::application.warehouse_default_name'),
+            Model::FIELD_NAME => T::trans(T::KEY_MSG_WAREHOUSE_DEFAULT_NAME),
         ]);
 
         DB::unprepared("ALTER TABLE $tableName AUTO_INCREMENT = 101;");

@@ -2,6 +2,7 @@
 
 use \DB;
 use \Illuminate\Database\Seeder;
+use \Neomerx\Core\Support\Translate as T;
 use \Neomerx\Core\Models\ProductTaxType as Model;
 
 class ProductTaxTypesTableSeeder extends Seeder
@@ -18,17 +19,17 @@ class ProductTaxTypesTableSeeder extends Seeder
             [
                 // this should be #1 see ProductTaxType::SHIPPING_ID
                 Model::FIELD_CODE => Model::SHIPPING_CODE,
-                Model::FIELD_NAME => trans('nm::application.product_tax_type_shipping')
+                Model::FIELD_NAME => T::trans(T::KEY_MSG_PRODUCT_TAX_TYPE_SHIPPING)
             ],
             [
                 // this should be #2 see ProductTaxType::EXEMPT_ID
                 Model::FIELD_CODE => Model::EXEMPT_CODE,
-                Model::FIELD_NAME => trans('nm::application.product_tax_type_exempt')
+                Model::FIELD_NAME => T::trans(T::KEY_MSG_PRODUCT_TAX_TYPE_EXEMPT)
             ],
             [
                 // this should be #3 see ProductTaxType::TAXABLE_ID
                 Model::FIELD_CODE => Model::TAXABLE_CODE,
-                Model::FIELD_NAME => trans('nm::application.product_tax_type_taxable')
+                Model::FIELD_NAME => T::trans(T::KEY_MSG_PRODUCT_TAX_TYPE_TAXABLE)
             ],
         ]);
 

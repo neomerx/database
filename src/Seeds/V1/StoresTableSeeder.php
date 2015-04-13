@@ -1,10 +1,11 @@
 <?php namespace Neomerx\Database\Seeds\V1;
 
 use \DB;
+use \Neomerx\Core\Models\Region;
 use \Illuminate\Database\Seeder;
 use \Neomerx\Core\Models\Address;
-use \Neomerx\Core\Models\Region;
 use \Neomerx\Core\Models\Store as Model;
+use \Neomerx\Core\Support\Translate as T;
 
 class StoresTableSeeder extends Seeder
 {
@@ -30,7 +31,7 @@ class StoresTableSeeder extends Seeder
         $tableName = Model::TABLE_NAME;
         DB::table($tableName)->insert([
             Model::FIELD_CODE       => Model::DEFAULT_CODE,
-            Model::FIELD_NAME       => trans('nm::application.store_default_name'),
+            Model::FIELD_NAME       => T::trans(T::KEY_MSG_STORE_DEFAULT_NAME),
             Model::FIELD_ID_ADDRESS => $addressId,
         ]);
     }
