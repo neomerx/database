@@ -6,7 +6,7 @@ use \Illuminate\Database\Migrations\Migration;
  * Base class for migrations. Gives common properties such as table name from associated model,
  * key column name, if created/updated timestamps should be generated, etc.
  *
- * @package Neomerx\Migrations\V1
+ * @package Neomerx\Database
  */
 abstract class BaseMigrate extends Migration
 {

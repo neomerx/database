@@ -5,6 +5,9 @@ use \Neomerx\Core\Models\Region;
 use \Neomerx\Core\Models\Address as Model;
 use \Illuminate\Database\Schema\Blueprint;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateAddresses extends BaseMigrate
 {
     /**
