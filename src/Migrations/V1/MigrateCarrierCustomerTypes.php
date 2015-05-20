@@ -6,6 +6,9 @@ use \Neomerx\Core\Models\CustomerType;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\CarrierCustomerType as Model;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCarrierCustomerTypes extends BaseMigrate
 {
     /**
