@@ -5,6 +5,9 @@ use \Neomerx\Core\Models\Carrier;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\CarrierPostcode as Model;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCarrierPostcodes extends BaseMigrate
 {
     /**
