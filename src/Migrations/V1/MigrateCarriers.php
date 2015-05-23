@@ -12,6 +12,9 @@ use \Neomerx\Core\Models\CarrierTerritory;
 use \Neomerx\Core\Models\CarrierCustomerType;
 use \Illuminate\Database\Schema\Blueprint;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCarriers extends BaseMigrate
 {
     /**

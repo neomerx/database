@@ -6,6 +6,9 @@ use \Neomerx\Core\Models\Carrier;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\CarrierTerritory as Model;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCarrierTerritories extends BaseMigrate
 {
     /**
