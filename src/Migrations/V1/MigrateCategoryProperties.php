@@ -6,6 +6,9 @@ use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\CategoryProperties as Model;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCategoryProperties extends BaseMigrate
 {
     /**

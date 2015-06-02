@@ -4,6 +4,9 @@ use \Schema;
 use \Neomerx\Core\Models\Category as Model;
 use \Illuminate\Database\Schema\Blueprint;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCategories extends BaseMigrate
 {
     /**
