@@ -1,6 +1,7 @@
 <?php namespace Neomerx\Database\Seeds\V1;
 
 use \DB;
+use \Carbon\Carbon;
 use \Illuminate\Database\Seeder;
 use \Neomerx\Core\Models\Language;
 use \Neomerx\Core\Models\Country as Model;
@@ -20,8 +21,11 @@ class CountriesTableSeeder extends Seeder
 
         // ISO 3166
 
+        $now = Carbon::now();
         $countryId = DB::table(Model::TABLE_NAME)->insertGetId([
-            Model::FIELD_CODE => 'US',
+            Model::FIELD_CODE       => 'US',
+            Model::FIELD_CREATED_AT => $now,
+            Model::FIELD_UPDATED_AT => $now,
         ]);
 
         DB::table(Properties::TABLE_NAME)->insert([

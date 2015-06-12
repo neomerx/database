@@ -1,6 +1,7 @@
 <?php namespace Neomerx\Database\Seeds\V1;
 
 use \DB;
+use \Carbon\Carbon;
 use \Illuminate\Database\Seeder;
 use \Neomerx\Core\Models\Country;
 use \Neomerx\Core\Models\Region as Model;
@@ -80,11 +81,14 @@ class RegionsTableSeeder extends Seeder
             $countryId = DB::table(Country::TABLE_NAME)
                 ->where(Country::FIELD_CODE, $regionData[3])->first([Country::FIELD_ID])->{Country::FIELD_ID};
 
+            $now = Carbon::now();
             DB::table(Model::TABLE_NAME)->insert([
                 Model::FIELD_ID_COUNTRY => $countryId,
                 Model::FIELD_CODE       => $regionData[0],
                 Model::FIELD_NAME       => $regionData[1],
                 Model::FIELD_POSITION   => $regionData[2],
+                Model::FIELD_CREATED_AT => $now,
+                Model::FIELD_UPDATED_AT => $now,
             ]);
         }
     }

@@ -1,6 +1,7 @@
 <?php namespace Neomerx\Database\Seeds\V1;
 
 use \DB;
+use \Carbon\Carbon;
 use \Neomerx\Core\Models\Region;
 use \Illuminate\Database\Seeder;
 use \Neomerx\Core\Models\Address;
@@ -21,11 +22,14 @@ class StoresTableSeeder extends Seeder
         $regionId = DB::table(Region::TABLE_NAME)
             ->where(Region::FIELD_CODE, 'CA')->first([Region::FIELD_ID])->{Region::FIELD_ID};
 
+        $now = Carbon::now();
         $addressId = DB::table(Address::TABLE_NAME)->insertGetId([
-            Address::FIELD_ADDRESS1  => '123 Widget Street',
-            Address::FIELD_CITY      => 'Acmeville',
-            Address::FIELD_POSTCODE  => 12345,
-            Address::FIELD_ID_REGION => $regionId,
+            Address::FIELD_ADDRESS1   => '123 Widget Street',
+            Address::FIELD_CITY       => 'Acmeville',
+            Address::FIELD_POSTCODE   => 12345,
+            Address::FIELD_ID_REGION  => $regionId,
+            Address::FIELD_CREATED_AT => $now,
+            Address::FIELD_UPDATED_AT => $now,
         ]);
 
         $tableName = Model::TABLE_NAME;
