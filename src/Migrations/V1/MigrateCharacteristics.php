@@ -5,6 +5,9 @@ use \Neomerx\Core\Models\Measurement;
 use \Neomerx\Core\Models\Characteristic as Model;
 use \Illuminate\Database\Schema\Blueprint;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCharacteristics extends BaseMigrate
 {
     /**
