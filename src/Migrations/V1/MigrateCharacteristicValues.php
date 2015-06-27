@@ -5,6 +5,9 @@ use \Neomerx\Core\Models\Characteristic;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\CharacteristicValue as Model;
 
+/**
+ * @package Neomerx\Database
+ */
 class MigrateCharacteristicValues extends BaseMigrate
 {
     /**
