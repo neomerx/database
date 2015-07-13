@@ -2,7 +2,7 @@
 
 use \Schema;
 use \Neomerx\Core\Models\Category;
-use \Neomerx\Core\Models\Manufacturer;
+use \Neomerx\Core\Models\BaseProduct;
 use \Neomerx\Core\Models\ProductTaxType;
 use \Neomerx\Core\Models\Product as Model;
 use \Illuminate\Database\Schema\Blueprint;
@@ -33,24 +33,13 @@ class MigrateProducts extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->string(Model::FIELD_SKU, Model::SKU_MAX_LENGTH)->unique();
+            $table->unsignedInteger(Model::FIELD_ID_BASE_PRODUCT);
             $table->unsignedInteger(Model::FIELD_ID_CATEGORY_DEFAULT);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->string(Model::FIELD_LINK, Model::LINK_MAX_LENGTH)->unique();
-            $table->unsignedInteger(Model::FIELD_ID_MANUFACTURER);
+            $table->string(Model::FIELD_SKU, Model::SKU_MAX_LENGTH)->unique();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned()->nullable();
             $table->unsignedInteger(Model::FIELD_ID_PRODUCT_TAX_TYPE);
-            $table->boolean(Model::FIELD_ENABLED);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PKG_HEIGHT)->unsigned()->nullable();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PKG_WIDTH)->unsigned()->nullable();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PKG_LENGTH)->unsigned()->nullable();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PKG_WEIGHT)->unsigned()->nullable();
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -60,12 +49,14 @@ class MigrateProducts extends BaseMigrate
             }
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_CATEGORY_DEFAULT)->references(Category::FIELD_ID)
-                ->on(Category::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_BASE_PRODUCT)
+                ->references(BaseProduct::FIELD_ID)
+                ->on(BaseProduct::TABLE_NAME)
+                ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_MANUFACTURER)->references(Manufacturer::FIELD_ID)
-                ->on(Manufacturer::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_CATEGORY_DEFAULT)->references(Category::FIELD_ID)
+                ->on(Category::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_PRODUCT_TAX_TYPE)->references(ProductTaxType::FIELD_ID)

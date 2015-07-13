@@ -3,7 +3,7 @@
 use \Schema;
 use \Neomerx\Core\Models\Image;
 use \Neomerx\Core\Models\Product;
-use \Neomerx\Core\Models\Variant;
+use \Neomerx\Core\Models\BaseProduct;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\ProductImage as Model;
 
@@ -33,9 +33,9 @@ class MigrateProductImages extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
+            $table->unsignedInteger(Model::FIELD_ID_BASE_PRODUCT);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->unsignedInteger(Model::FIELD_ID_VARIANT)->nullable();
+            $table->unsignedInteger(Model::FIELD_ID_PRODUCT)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedInteger(Model::FIELD_ID_IMAGE)->unique();
             /** @noinspection PhpUndefinedMethodInspection */
@@ -50,10 +50,12 @@ class MigrateProductImages extends BaseMigrate
             }
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_BASE_PRODUCT)
+                ->references(BaseProduct::FIELD_ID)
+                ->on(BaseProduct::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)->on(Variant::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_IMAGE)->references(Image::FIELD_ID)->on(Image::TABLE_NAME);

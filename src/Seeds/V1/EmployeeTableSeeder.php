@@ -25,6 +25,7 @@ class EmployeeTableSeeder extends Seeder
         ]);
 
         /** @var Role $role */
+        /** @noinspection PhpMethodParametersCountMismatchInspection */
         $role = Role::where(Role::FIELD_CODE, 'ADMIN')->firstOrFail();
 
         /** @var EmployeeRoleRepositoryInterface $employeeRoleRepo */

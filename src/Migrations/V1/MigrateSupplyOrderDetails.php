@@ -2,7 +2,7 @@
 
 use \Schema;
 use \Neomerx\Core\Support as S;
-use \Neomerx\Core\Models\Variant;
+use \Neomerx\Core\Models\Product;
 use \Neomerx\Core\Models\SupplyOrder;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\SupplyOrderDetails as Model;
@@ -41,7 +41,7 @@ class MigrateSupplyOrderDetails extends BaseMigrate
             $table->decimal(Model::FIELD_DISCOUNT_RATE)->unsigned()->default(0);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_TAX_RATE)->unsigned()->default(0);
-            $table->unsignedInteger(Model::FIELD_ID_VARIANT);
+            $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -55,8 +55,8 @@ class MigrateSupplyOrderDetails extends BaseMigrate
                 ->on(SupplyOrder::TABLE_NAME)->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)
-                ->on(Variant::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)
+                ->on(Product::TABLE_NAME);
         });
     }
 

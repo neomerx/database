@@ -2,9 +2,9 @@
 
 use \Schema;
 use \Neomerx\Core\Models\Product;
-use \Neomerx\Core\Models\Variant;
-use \Neomerx\Core\Models\CharacteristicValue;
+use \Neomerx\Core\Models\BaseProduct;
 use \Illuminate\Database\Schema\Blueprint;
+use \Neomerx\Core\Models\CharacteristicValue;
 use \Neomerx\Core\Models\Specification as Model;
 
 class MigrateSpecifications extends BaseMigrate
@@ -33,9 +33,9 @@ class MigrateSpecifications extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
+            $table->unsignedInteger(Model::FIELD_ID_BASE_PRODUCT);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->unsignedInteger(Model::FIELD_ID_VARIANT)->nullable();
+            $table->unsignedInteger(Model::FIELD_ID_PRODUCT)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->tinyInteger(Model::FIELD_POSITION)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
@@ -49,16 +49,18 @@ class MigrateSpecifications extends BaseMigrate
             }
 
             $table->unique(
-                [Model::FIELD_ID_PRODUCT, Model::FIELD_ID_VARIANT, Model::FIELD_ID_CHARACTERISTIC_VALUE],
-                'unique_value_for_product_and_variant'
+                [Model::FIELD_ID_BASE_PRODUCT, Model::FIELD_ID_PRODUCT, Model::FIELD_ID_CHARACTERISTIC_VALUE],
+                'unique_value_for_base_product_and_product'
             );
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME)
+            $table->foreign(Model::FIELD_ID_BASE_PRODUCT)
+                ->references(BaseProduct::FIELD_ID)
+                ->on(BaseProduct::TABLE_NAME)
                 ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)->on(Variant::TABLE_NAME)
+            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME)
                 ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */

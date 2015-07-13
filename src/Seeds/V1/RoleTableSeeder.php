@@ -67,6 +67,8 @@ class RoleTableSeeder extends Seeder
         $adminPermissions = [
             // object type,                      allowed permissions, denied permissions
             [M\Address::class,                       $allPermissions, $noPermissions],
+            [M\BaseProduct::class,                   $allPermissions, $noPermissions],
+            [M\BaseProductProperties::class,         $allPermissions, $noPermissions],
             [M\Carrier::class,                       $allPermissions, $noPermissions],
             [M\CarrierCustomerType::class,           $allPermissions, $noPermissions],
             [M\CarrierPostcode::class,               $allPermissions, $noPermissions],
@@ -131,8 +133,6 @@ class RoleTableSeeder extends Seeder
             [M\TaxRulePostcode::class,               $allPermissions, $noPermissions],
             [M\TaxRuleProductType::class,            $allPermissions, $noPermissions],
             [M\TaxRuleTerritory::class,              $allPermissions, $noPermissions],
-            [M\Variant::class,                       $allPermissions, $noPermissions],
-            [M\VariantProperties::class,             $allPermissions, $noPermissions],
             [M\Warehouse::class,                     $allPermissions, $noPermissions],
         ];
 

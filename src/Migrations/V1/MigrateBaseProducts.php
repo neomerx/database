@@ -1,11 +1,11 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
-use \Neomerx\Core\Models\Product;
-use \Neomerx\Core\Models\Variant as Model;
+use \Neomerx\Core\Models\Manufacturer;
 use \Illuminate\Database\Schema\Blueprint;
+use \Neomerx\Core\Models\BaseProduct as Model;
 
-class MigrateVariants extends BaseMigrate
+class MigrateBaseProducts extends BaseMigrate
 {
     /**
      * @var Model
@@ -31,11 +31,22 @@ class MigrateVariants extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_SKU, Model::SKU_MAX_LENGTH)->unique();
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned()->nullable();
+            $table->string(Model::FIELD_LINK, Model::LINK_MAX_LENGTH)->unique();
+            $table->unsignedInteger(Model::FIELD_ID_MANUFACTURER);
+            $table->boolean(Model::FIELD_ENABLED);
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PKG_HEIGHT)->unsigned()->nullable();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PKG_WIDTH)->unsigned()->nullable();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PKG_LENGTH)->unsigned()->nullable();
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->decimal(Model::FIELD_PKG_WEIGHT)->unsigned()->nullable();
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -45,8 +56,8 @@ class MigrateVariants extends BaseMigrate
             }
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME)
-                ->onDelete('cascade');
+            $table->foreign(Model::FIELD_ID_MANUFACTURER)->references(Manufacturer::FIELD_ID)
+                ->on(Manufacturer::TABLE_NAME);
         });
     }
 

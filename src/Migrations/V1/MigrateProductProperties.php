@@ -35,11 +35,7 @@ class MigrateProductProperties extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
             $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
-            $table->string(Model::FIELD_DESCRIPTION_SHORT, Model::DESCRIPTION_SHORT_MAX_LENGTH);
             $table->string(Model::FIELD_DESCRIPTION, Model::DESCRIPTION_MAX_LENGTH);
-            $table->string(Model::FIELD_META_TITLE, Model::META_TITLE_MAX_LENGTH);
-            $table->string(Model::FIELD_META_KEYWORDS, Model::META_KEYWORDS_MAX_LENGTH);
-            $table->string(Model::FIELD_META_DESCRIPTION, Model::META_DESCRIPTION_MAX_LENGTH);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();

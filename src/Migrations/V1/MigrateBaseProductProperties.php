@@ -2,11 +2,11 @@
 
 use \Schema;
 use \Neomerx\Core\Models\Language;
-use \Neomerx\Core\Models\Variant;
+use \Neomerx\Core\Models\BaseProduct;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\VariantProperties as Model;
+use \Neomerx\Core\Models\BaseProductProperties as Model;
 
-class MigrateVariantProperties extends BaseMigrate
+class MigrateBaseProductProperties extends BaseMigrate
 {
     /**
      * @var Model
@@ -32,10 +32,14 @@ class MigrateVariantProperties extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_VARIANT);
+            $table->unsignedInteger(Model::FIELD_ID_BASE_PRODUCT);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
             $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
+            $table->string(Model::FIELD_DESCRIPTION_SHORT, Model::DESCRIPTION_SHORT_MAX_LENGTH);
             $table->string(Model::FIELD_DESCRIPTION, Model::DESCRIPTION_MAX_LENGTH);
+            $table->string(Model::FIELD_META_TITLE, Model::META_TITLE_MAX_LENGTH);
+            $table->string(Model::FIELD_META_KEYWORDS, Model::META_KEYWORDS_MAX_LENGTH);
+            $table->string(Model::FIELD_META_DESCRIPTION, Model::META_DESCRIPTION_MAX_LENGTH);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -44,10 +48,12 @@ class MigrateVariantProperties extends BaseMigrate
                 $table->softDeletes();
             }
 
-            $table->unique([Model::FIELD_ID_VARIANT, Model::FIELD_ID_LANGUAGE]);
+            $table->unique([Model::FIELD_ID_BASE_PRODUCT, Model::FIELD_ID_LANGUAGE]);
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)->on(Variant::TABLE_NAME)
+            $table->foreign(Model::FIELD_ID_BASE_PRODUCT)
+                ->references(BaseProduct::FIELD_ID)
+                ->on(BaseProduct::TABLE_NAME)
                 ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */

@@ -3,7 +3,7 @@
 use \Schema;
 use \Neomerx\Core\Support as S;
 use \Neomerx\Core\Models\Order;
-use \Neomerx\Core\Models\Variant;
+use \Neomerx\Core\Models\Product;
 use \Neomerx\Core\Models\ShippingOrder;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\OrderDetails as Model;
@@ -37,7 +37,7 @@ class MigrateOrderDetails extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_ORDER);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedInteger(Model::FIELD_ID_SHIPPING_ORDER)->nullable();
-            $table->unsignedInteger(Model::FIELD_ID_VARIANT);
+            $table->unsignedInteger(Model::FIELD_ID_PRODUCT);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
@@ -54,7 +54,7 @@ class MigrateOrderDetails extends BaseMigrate
             $table->foreign(Model::FIELD_ID_ORDER)->references(Order::FIELD_ID)->on(Order::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_VARIANT)->references(Variant::FIELD_ID)->on(Variant::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_PRODUCT)->references(Product::FIELD_ID)->on(Product::TABLE_NAME);
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_SHIPPING_ORDER)->references(ShippingOrder::FIELD_ID)
