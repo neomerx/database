@@ -3,6 +3,7 @@
 use \Schema;
 use \Neomerx\Core\Models\Store;
 use \Neomerx\Core\Models\Address;
+use \Neomerx\Core\Models\Currency;
 use \Neomerx\Core\Models\Customer;
 use \Neomerx\Core\Models\OrderStatus;
 use \Neomerx\Core\Models\Order as Model;
@@ -43,6 +44,8 @@ class MigrateOrders extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_STORE)->nullable();
             $table->unsignedInteger(Model::FIELD_ID_ORDER_STATUS);
             /** @noinspection PhpUndefinedMethodInspection */
+            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
+            /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_SHIPPING_COST)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_SHIPPING_TAX)->unsigned();
@@ -72,6 +75,9 @@ class MigrateOrders extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_ORDER_STATUS)->references(OrderStatus::FIELD_ID)
                 ->on(OrderStatus::TABLE_NAME);
+
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->foreign(Model::FIELD_ID_CURRENCY)->references(Currency::FIELD_ID)->on(Currency::TABLE_NAME);
         });
     }
 

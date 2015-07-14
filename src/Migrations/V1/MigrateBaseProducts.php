@@ -1,6 +1,7 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
+use \Neomerx\Core\Models\Currency;
 use \Neomerx\Core\Models\Manufacturer;
 use \Illuminate\Database\Schema\Blueprint;
 use \Neomerx\Core\Models\BaseProduct as Model;
@@ -40,6 +41,8 @@ class MigrateBaseProducts extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
+            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
+            /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PKG_HEIGHT)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PKG_WIDTH)->unsigned()->nullable();
@@ -58,6 +61,9 @@ class MigrateBaseProducts extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_MANUFACTURER)->references(Manufacturer::FIELD_ID)
                 ->on(Manufacturer::TABLE_NAME);
+
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->foreign(Model::FIELD_ID_CURRENCY)->references(Currency::FIELD_ID)->on(Currency::TABLE_NAME);
         });
     }
 

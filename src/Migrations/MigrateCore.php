@@ -84,6 +84,7 @@ class MigrateCore
      */
     public static function up()
     {
+        MigrateCurrencies::up();
         MigrateEmployees::up();
         MigrateLanguages::up();
         MigrateCategories::up();
@@ -138,7 +139,6 @@ class MigrateCore
         MigrateInvoicePayments::up();
         MigrateRoles::up();
         MigrateEmployeeRoles::up();
-        MigrateCurrencies::up();
         MigrateCurrencyProperties::up();
         MigrateSupplyOrders::up();
         MigrateSupplyOrderDetails::up();
@@ -180,7 +180,6 @@ class MigrateCore
         MigrateSupplyOrderDetails::down();
         MigrateSupplyOrders::down();
         MigrateCurrencyProperties::down();
-        MigrateCurrencies::down();
         MigrateEmployeeRoles::down();
         MigrateRoles::down();
         MigrateInvoicePayments::down();
@@ -235,5 +234,6 @@ class MigrateCore
         MigrateCategories::down();
         MigrateLanguages::down();
         MigrateEmployees::down();
+        MigrateCurrencies::down();
     }
 }
