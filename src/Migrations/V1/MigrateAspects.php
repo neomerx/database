@@ -3,11 +3,11 @@
 use \Schema;
 use \Neomerx\Core\Models\Product;
 use \Neomerx\Core\Models\BaseProduct;
+use \Neomerx\Core\Models\FeatureValue;
+use \Neomerx\Core\Models\Aspect as Model;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CharacteristicValue;
-use \Neomerx\Core\Models\Specification as Model;
 
-class MigrateSpecifications extends BaseMigrate
+class MigrateAspects extends BaseMigrate
 {
     /**
      * @var Model
@@ -39,7 +39,7 @@ class MigrateSpecifications extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->tinyInteger(Model::FIELD_POSITION)->unsigned();
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->unsignedInteger(Model::FIELD_ID_CHARACTERISTIC_VALUE);
+            $table->unsignedInteger(Model::FIELD_ID_VALUE);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -49,7 +49,7 @@ class MigrateSpecifications extends BaseMigrate
             }
 
             $table->unique(
-                [Model::FIELD_ID_BASE_PRODUCT, Model::FIELD_ID_PRODUCT, Model::FIELD_ID_CHARACTERISTIC_VALUE],
+                [Model::FIELD_ID_BASE_PRODUCT, Model::FIELD_ID_PRODUCT, Model::FIELD_ID_VALUE],
                 'unique_value_for_base_product_and_product'
             );
 
@@ -64,8 +64,8 @@ class MigrateSpecifications extends BaseMigrate
                 ->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_CHARACTERISTIC_VALUE)->references(CharacteristicValue::FIELD_ID)
-                ->on(CharacteristicValue::TABLE_NAME);
+            $table->foreign(Model::FIELD_ID_VALUE)->references(FeatureValue::FIELD_ID)
+                ->on(FeatureValue::TABLE_NAME);
         });
     }
 

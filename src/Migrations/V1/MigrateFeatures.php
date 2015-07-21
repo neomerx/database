@@ -2,13 +2,13 @@
 
 use \Schema;
 use \Neomerx\Core\Models\Measurement;
-use \Neomerx\Core\Models\Characteristic as Model;
+use \Neomerx\Core\Models\Feature as Model;
 use \Illuminate\Database\Schema\Blueprint;
 
 /**
  * @package Neomerx\Database
  */
-class MigrateCharacteristics extends BaseMigrate
+class MigrateFeatures extends BaseMigrate
 {
     /**
      * @var Model

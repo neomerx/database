@@ -2,14 +2,14 @@
 
 use \Schema;
 use \Neomerx\Core\Models\Language;
-use \Neomerx\Core\Models\Characteristic;
+use \Neomerx\Core\Models\FeatureValue;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CharacteristicProperties as Model;
+use \Neomerx\Core\Models\FeatureValueProperties as Model;
 
 /**
  * @package Neomerx\Database
  */
-class MigrateCharacteristicProperties extends BaseMigrate
+class MigrateFeatureValueProperties extends BaseMigrate
 {
     /**
      * @var Model
@@ -35,9 +35,9 @@ class MigrateCharacteristicProperties extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_CHARACTERISTIC);
+            $table->unsignedInteger(Model::FIELD_ID_FEATURE_VALUE);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
-            $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
+            $table->string(Model::FIELD_VALUE, Model::VALUE_MAX_LENGTH);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -46,11 +46,14 @@ class MigrateCharacteristicProperties extends BaseMigrate
                 $table->softDeletes();
             }
 
-            $table->unique([Model::FIELD_ID_CHARACTERISTIC, Model::FIELD_ID_LANGUAGE]);
+            $table->unique(
+                [Model::FIELD_ID_FEATURE_VALUE, Model::FIELD_ID_LANGUAGE],
+                'characteristic_value_properties_unique'
+            );
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_CHARACTERISTIC)->references(Characteristic::FIELD_ID)
-                ->on(Characteristic::TABLE_NAME)->onDelete('cascade');
+            $table->foreign(Model::FIELD_ID_FEATURE_VALUE)->references(FeatureValue::FIELD_ID)
+                ->on(FeatureValue::TABLE_NAME)->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_LANGUAGE)->references(Language::FIELD_ID)->on(Language::TABLE_NAME);

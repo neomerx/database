@@ -1,14 +1,14 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
-use \Neomerx\Core\Models\Characteristic;
+use \Neomerx\Core\Models\Feature;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CharacteristicValue as Model;
+use \Neomerx\Core\Models\FeatureValue as Model;
 
 /**
  * @package Neomerx\Database
  */
-class MigrateCharacteristicValues extends BaseMigrate
+class MigrateFeatureValues extends BaseMigrate
 {
     /**
      * @var Model
@@ -35,7 +35,7 @@ class MigrateCharacteristicValues extends BaseMigrate
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->unsignedInteger(Model::FIELD_ID_CHARACTERISTIC);
+            $table->unsignedInteger(Model::FIELD_ID_FEATURE);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_CODE, Model::CODE_MAX_LENGTH)->unique();
 
@@ -47,8 +47,8 @@ class MigrateCharacteristicValues extends BaseMigrate
             }
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_CHARACTERISTIC)->references(Characteristic::FIELD_ID)
-                ->on(Characteristic::TABLE_NAME)->onDelete('cascade');
+            $table->foreign(Model::FIELD_ID_FEATURE)->references(Feature::FIELD_ID)
+                ->on(Feature::TABLE_NAME)->onDelete('cascade');
         });
     }
 

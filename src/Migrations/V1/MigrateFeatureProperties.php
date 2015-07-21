@@ -1,15 +1,15 @@
 <?php namespace Neomerx\Database\Migrations\V1;
 
 use \Schema;
+use \Neomerx\Core\Models\Feature;
 use \Neomerx\Core\Models\Language;
-use \Neomerx\Core\Models\CharacteristicValue;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CharacteristicValueProperties as Model;
+use \Neomerx\Core\Models\FeatureProperties as Model;
 
 /**
  * @package Neomerx\Database
  */
-class MigrateCharacteristicValueProperties extends BaseMigrate
+class MigrateFeatureProperties extends BaseMigrate
 {
     /**
      * @var Model
@@ -35,9 +35,9 @@ class MigrateCharacteristicValueProperties extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            $table->unsignedInteger(Model::FIELD_ID_CHARACTERISTIC_VALUE);
+            $table->unsignedInteger(Model::FIELD_ID_FEATURE);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
-            $table->string(Model::FIELD_VALUE, Model::VALUE_MAX_LENGTH);
+            $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();
@@ -46,14 +46,11 @@ class MigrateCharacteristicValueProperties extends BaseMigrate
                 $table->softDeletes();
             }
 
-            $table->unique(
-                [Model::FIELD_ID_CHARACTERISTIC_VALUE, Model::FIELD_ID_LANGUAGE],
-                'characteristic_value_properties_unique'
-            );
+            $table->unique([Model::FIELD_ID_FEATURE, Model::FIELD_ID_LANGUAGE]);
 
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->foreign(Model::FIELD_ID_CHARACTERISTIC_VALUE)->references(CharacteristicValue::FIELD_ID)
-                ->on(CharacteristicValue::TABLE_NAME)->onDelete('cascade');
+            $table->foreign(Model::FIELD_ID_FEATURE)->references(Feature::FIELD_ID)
+                ->on(Feature::TABLE_NAME)->onDelete('cascade');
 
             /** @noinspection PhpUndefinedMethodInspection */
             $table->foreign(Model::FIELD_ID_LANGUAGE)->references(Language::FIELD_ID)->on(Language::TABLE_NAME);
