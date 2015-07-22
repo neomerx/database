@@ -35,6 +35,8 @@ class MigrateCurrencies extends BaseMigrate
             $table->string(Model::FIELD_CODE, Model::CODE_MAX_LENGTH)->unique();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->tinyInteger(Model::FIELD_DECIMAL_DIGITS)->unsigned();
+            $table->string(Model::FIELD_DECIMAL_POINTS_SEPARATOR, 1);
+            $table->string(Model::FIELD_THOUSANDS_SEPARATOR, 1);
 
             $table->primary(Model::FIELD_ID);
 
