@@ -5,6 +5,7 @@ use \Neomerx\Core\Support as S;
 use \Neomerx\Core\Models\Region;
 use \Neomerx\Core\Models\Country;
 use \Neomerx\Core\Models\Carrier;
+use \Neomerx\Core\Models\Currency;
 use \Illuminate\Support\Facades\DB;
 use \Neomerx\Core\Models\CarrierPostcode;
 use \Neomerx\Core\Models\Carrier as Model;
@@ -55,10 +56,11 @@ class MigrateCarriers extends BaseMigrate
             $table->double(Model::FIELD_MIN_WEIGHT)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->double(Model::FIELD_MAX_WEIGHT)->unsigned()->nullable();
+            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->double(Model::FIELD_MIN_COST)->unsigned()->nullable();
+            $table->unsignedBigInteger(Model::FIELD_MIN_COST)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->double(Model::FIELD_MAX_COST)->unsigned()->nullable();
+            $table->unsignedBigInteger(Model::FIELD_MAX_COST)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->double(Model::FIELD_MIN_DIMENSION)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
@@ -70,6 +72,9 @@ class MigrateCarriers extends BaseMigrate
             if (self::isSoftDeleting() === true) {
                 $table->softDeletes();
             }
+
+            /** @noinspection PhpUndefinedMethodInspection */
+            $table->foreign(Model::FIELD_ID_CURRENCY)->references(Currency::FIELD_ID)->on(Currency::TABLE_NAME);
         });
 
         /** @noinspection PhpUndefinedMethodInspection */

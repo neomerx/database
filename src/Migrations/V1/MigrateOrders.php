@@ -43,14 +43,10 @@ class MigrateOrders extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedInteger(Model::FIELD_ID_STORE)->nullable();
             $table->unsignedInteger(Model::FIELD_ID_ORDER_STATUS);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_SHIPPING_COST)->unsigned();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_SHIPPING_TAX)->unsigned();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRODUCTS_TAX)->unsigned();
+            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
+            $table->unsignedBigInteger(Model::FIELD_SHIPPING_COST);
+            $table->unsignedBigInteger(Model::FIELD_SHIPPING_TAX);
+            $table->unsignedBigInteger(Model::FIELD_PRODUCTS_TAX);
             $table->text(Model::FIELD_TAX_DETAILS);
 
             if (self::usesTimestamps() === true) {

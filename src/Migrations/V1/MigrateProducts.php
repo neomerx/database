@@ -38,7 +38,7 @@ class MigrateProducts extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->string(Model::FIELD_SKU, Model::SKU_MAX_LENGTH)->unique();
             /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned()->nullable();
+            $table->unsignedBigInteger(Model::FIELD_PRICE_WO_TAX)->nullable();
             $table->unsignedInteger(Model::FIELD_ID_PRODUCT_TAX_TYPE);
 
             if (self::usesTimestamps() === true) {

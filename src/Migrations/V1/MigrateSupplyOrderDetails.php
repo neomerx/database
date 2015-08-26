@@ -34,8 +34,7 @@ class MigrateSupplyOrderDetails extends BaseMigrate
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
             $table->unsignedInteger(Model::FIELD_ID_SUPPLY_ORDER);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
+            $table->unsignedBigInteger(Model::FIELD_PRICE_WO_TAX);
             $table->unsignedInteger(Model::FIELD_QUANTITY);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_DISCOUNT_RATE)->unsigned()->default(0);

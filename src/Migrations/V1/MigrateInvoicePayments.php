@@ -33,8 +33,7 @@ class MigrateInvoicePayments extends BaseMigrate
             $table->increments(Model::FIELD_ID);
 
             $table->unsignedInteger(Model::FIELD_ID_INVOICE);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_AMOUNT)->unsigned();
+            $table->unsignedBigInteger(Model::FIELD_AMOUNT);
 
             if (self::usesTimestamps() === true) {
                 $table->timestamps();

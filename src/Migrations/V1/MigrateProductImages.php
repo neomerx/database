@@ -38,8 +38,7 @@ class MigrateProductImages extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_PRODUCT)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedInteger(Model::FIELD_ID_IMAGE)->unique();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->tinyInteger(Model::FIELD_POSITION)->unsigned();
+            $table->unsignedTinyInteger(Model::FIELD_POSITION);
             $table->boolean(Model::FIELD_IS_COVER);
 
             if (self::usesTimestamps() === true) {

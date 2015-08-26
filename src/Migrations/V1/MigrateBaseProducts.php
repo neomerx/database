@@ -38,10 +38,8 @@ class MigrateBaseProducts extends BaseMigrate
             $table->string(Model::FIELD_LINK, Model::LINK_MAX_LENGTH)->unique();
             $table->unsignedInteger(Model::FIELD_ID_MANUFACTURER);
             $table->boolean(Model::FIELD_ENABLED);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->decimal(Model::FIELD_PRICE_WO_TAX)->unsigned();
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
+            $table->unsignedBigInteger(Model::FIELD_PRICE_WO_TAX);
+            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PKG_HEIGHT)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
