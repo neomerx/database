@@ -43,7 +43,7 @@ class MigrateOrders extends BaseMigrate
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedInteger(Model::FIELD_ID_STORE)->nullable();
             $table->unsignedInteger(Model::FIELD_ID_ORDER_STATUS);
-            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
+            $table->unsignedInteger(Model::FIELD_ID_CURRENCY);
             $table->unsignedBigInteger(Model::FIELD_SHIPPING_COST);
             $table->unsignedBigInteger(Model::FIELD_SHIPPING_TAX);
             $table->unsignedBigInteger(Model::FIELD_PRODUCTS_TAX);

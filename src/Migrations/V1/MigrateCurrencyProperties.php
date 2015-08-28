@@ -32,8 +32,7 @@ class MigrateCurrencyProperties extends BaseMigrate
     {
         Schema::create(Model::TABLE_NAME, function (Blueprint $table) {
             $table->increments(Model::FIELD_ID);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
+            $table->unsignedInteger(Model::FIELD_ID_CURRENCY);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
             $table->string(Model::FIELD_NAME, Model::NAME_MAX_LENGTH);
             $table->string(Model::FIELD_DESCRIPTION, Model::DESCRIPTION_MAX_LENGTH);

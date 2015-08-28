@@ -56,7 +56,7 @@ class MigrateCarriers extends BaseMigrate
             $table->double(Model::FIELD_MIN_WEIGHT)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
             $table->double(Model::FIELD_MAX_WEIGHT)->unsigned()->nullable();
-            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
+            $table->unsignedInteger(Model::FIELD_ID_CURRENCY);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->unsignedBigInteger(Model::FIELD_MIN_COST)->nullable();
             /** @noinspection PhpUndefinedMethodInspection */

@@ -36,8 +36,7 @@ class MigrateSupplyOrders extends BaseMigrate
             $table->increments(Model::FIELD_ID);
             $table->unsignedInteger(Model::FIELD_ID_SUPPLIER);
             $table->unsignedInteger(Model::FIELD_ID_WAREHOUSE);
-            /** @noinspection PhpUndefinedMethodInspection */
-            $table->smallInteger(Model::FIELD_ID_CURRENCY)->unsigned();
+            $table->unsignedInteger(Model::FIELD_ID_CURRENCY);
             $table->unsignedInteger(Model::FIELD_ID_LANGUAGE);
             $table->timestamp(Model::FIELD_EXPECTED_AT);
             /** @noinspection PhpUndefinedMethodInspection */

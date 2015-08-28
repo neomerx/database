@@ -39,7 +39,7 @@ class MigrateBaseProducts extends BaseMigrate
             $table->unsignedInteger(Model::FIELD_ID_MANUFACTURER);
             $table->boolean(Model::FIELD_ENABLED);
             $table->unsignedBigInteger(Model::FIELD_PRICE_WO_TAX);
-            $table->unsignedSmallInteger(Model::FIELD_ID_CURRENCY);
+            $table->unsignedInteger(Model::FIELD_ID_CURRENCY);
             /** @noinspection PhpUndefinedMethodInspection */
             $table->decimal(Model::FIELD_PKG_HEIGHT)->unsigned()->nullable();
             /** @noinspection PhpUndefinedMethodInspection */
