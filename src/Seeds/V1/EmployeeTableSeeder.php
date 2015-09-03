@@ -30,7 +30,7 @@ class EmployeeTableSeeder extends Seeder
 
         /** @var EmployeeRoleRepositoryInterface $employeeRoleRepo */
         $employeeRoleRepo = app(EmployeeRoleRepositoryInterface::class);
-        $employeeRoleRepo->instance($employee, $role)->saveOrFail();
+        $employeeRoleRepo->createWithObjects($employee, $role);
 
         // reserve first 100 IDs, set autoincrement start from 101
         $tableName = Employee::TABLE_NAME;

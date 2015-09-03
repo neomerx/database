@@ -41,9 +41,8 @@ class RoleTableSeeder extends Seeder
 
         $adminPermissions = $this->getAdminPermissions();
         foreach ($adminPermissions as $adminPermission) {
-            $objectType = $objectRepo->instance([ObjectType::FIELD_TYPE => $adminPermission[0]]);
-            $objectType->saveOrFail();
-            $relationRepo->instance($adminRole, $objectType, [
+            $objectType = $objectRepo->create([ObjectType::FIELD_TYPE => $adminPermission[0]]);
+            $relationRepo->createWithObjects($adminRole, $objectType, [
                 RoleObjectType::FIELD_ALLOW_MASK => $adminPermission[1],
                 RoleObjectType::FIELD_DENY_MASK  => $adminPermission[2],
             ])->saveOrFail();
