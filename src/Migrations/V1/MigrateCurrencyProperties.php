@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Currency;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CurrencyProperties as Model;
+use \Neomerx\Core\Models\CurrencyProperty as Model;
 
 class MigrateCurrencyProperties extends BaseMigrate
 {

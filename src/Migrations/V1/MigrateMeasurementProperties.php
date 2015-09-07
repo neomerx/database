@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Language;
 use \Neomerx\Core\Models\Measurement;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\MeasurementProperties as Model;
+use \Neomerx\Core\Models\MeasurementProperty as Model;
 
 class MigrateMeasurementProperties extends BaseMigrate
 {

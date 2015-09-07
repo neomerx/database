@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Category;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CategoryProperties as Model;
+use \Neomerx\Core\Models\CategoryProperty as Model;
 
 /**
  * @package Neomerx\Database

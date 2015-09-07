@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Country;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CountryProperties as Model;
+use \Neomerx\Core\Models\CountryProperty as Model;
 
 class MigrateCountryProperties extends BaseMigrate
 {

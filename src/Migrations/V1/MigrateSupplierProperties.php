@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Language;
 use \Neomerx\Core\Models\Supplier;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\SupplierProperties as Model;
+use \Neomerx\Core\Models\SupplierProperty as Model;
 
 class MigrateSupplierProperties extends BaseMigrate
 {

@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Carrier;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\CarrierProperties as Model;
+use \Neomerx\Core\Models\CarrierProperty as Model;
 
 /**
  * @package Neomerx\Database

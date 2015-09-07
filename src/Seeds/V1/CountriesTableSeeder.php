@@ -5,7 +5,7 @@ use \Carbon\Carbon;
 use \Illuminate\Database\Seeder;
 use \Neomerx\Core\Models\Language;
 use \Neomerx\Core\Models\Country as Model;
-use \Neomerx\Core\Models\CountryProperties as Properties;
+use \Neomerx\Core\Models\CountryProperty as Properties;
 
 class CountriesTableSeeder extends Seeder
 {

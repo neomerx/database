@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Language;
 use \Neomerx\Core\Models\FeatureValue;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\FeatureValueProperties as Model;
+use \Neomerx\Core\Models\FeatureValueProperty as Model;
 
 /**
  * @package Neomerx\Database

@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Product;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\ProductProperties as Model;
+use \Neomerx\Core\Models\ProductProperty as Model;
 
 class MigrateProductProperties extends BaseMigrate
 {

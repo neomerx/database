@@ -4,7 +4,7 @@ use \Schema;
 use \Neomerx\Core\Models\Image;
 use \Neomerx\Core\Models\Language;
 use \Illuminate\Database\Schema\Blueprint;
-use \Neomerx\Core\Models\ImageProperties as Model;
+use \Neomerx\Core\Models\ImageProperty as Model;
 
 class MigrateImageProperties extends BaseMigrate
 {
